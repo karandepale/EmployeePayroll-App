@@ -1,4 +1,7 @@
 Employee Payroll Application
+
+It is a fully Working and responsive Dynamic website for small device. Using LocalStorage.
+
 Tech stack:- HTML5 , CSS3 , Java script.
 Functionality:- Employee payroll form with USername, Profile, Gender, Department, Salary, StartDate , Notes.
 
