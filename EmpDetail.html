@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Payroll</title>
+  <link rel="stylesheet" href="Style.css" />
+</head>
+
+<body>
+  <header class="header-container">
+    <div class="logoDiv">
+      <img src="https://tse2.mm.bing.net/th?id=OIP.rVggrpUvs-YAUExsD7c-EAHaHa&pid=Api&P=0&h=180" alt="logo"
+        class="logo" />
+      <h4> Employee </h4>
+      <h4><span> Payroll</span> </h4>
+    </div>
+    <div>
+      <h1> Add Employee Payroll UI/UX Design </h1>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="mainContainer">
+      <div class="detailBtn">
+        <h2>Employee Details</h2>
+        <button onclick="AddUserHandler()" class="submitBtnCls">+ Add User</button>
+      </div>
+
+      <div class="tableContainer">
+        <table id="employeeTable">
+          <tr class="tableRow headingRow">
+            <th>NAME</th>
+            <th>GENDER</th>
+            <th>DEPARTMENT</th>
+            <th>SALARY</th>
+            <th>START DATE</th>
+            <th>ACTION</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function AddUserHandler() {
+      window.location.href = "Form.html";
+    }
+
+    function deleteRow(index) {
+      let formDataArray = JSON.parse(localStorage.getItem("formData"));
+
+      if (formDataArray) {
+        formDataArray.splice(index, 1);
+
+        localStorage.setItem("formData", JSON.stringify(formDataArray));
+
+        const employeeTable = document.getElementById("employeeTable");
+        employeeTable.deleteRow(index + 1);
+      }
+    }
+
+    function editRow(index) {
+      window.location.href = `Form.html?edit=${index}`;
+    }
+
+    function updateTable() {
+      const formDataArray = JSON.parse(localStorage.getItem("formData"));
+      const employeeTable = document.getElementById("employeeTable");
+
+      employeeTable.innerHTML = `
+        <tr class="tableRow headingRow">
+          <th>NAME</th>
+          <th>GENDER</th>
+          <th>DEPARTMENT</th>
+          <th>SALARY</th>
+          <th>START DATE</th>
+          <th>ACTION</th>
+        </tr>
+      `;
+
+      formDataArray.forEach((formData, index) => {
+        const newRow = document.createElement("tr");
+
+        const departments = Array.isArray(formData.department)
+          ? formData.department.join("<br>")
+          : formData.department;
+
+        newRow.innerHTML = `
+          <td>${formData.name}</td>
+          <td>${formData.gender}</td>
+          <td>${departments}</td>
+          <td>${formData.salary}</td>
+          <td>${formData.startDate}</td>
+          <td>
+            <button onclick="deleteRow(${index})" class="actionBtn">Delete</button>
+            <button onclick="editRow(${index})" class="actionBtn">Edit</button>
+          </td>
+        `;
+
+        employeeTable.appendChild(newRow);
+      });
+    }
+
+    updateTable();
+  </script>
+</body>
+
+</html>
