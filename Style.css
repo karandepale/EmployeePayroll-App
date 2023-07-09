@@ -23,7 +23,7 @@
     margin:auto;
 }
 
-.detailBtn{
+.detailBtn{ 
     /* background-color: white; */
     display:flex;
     justify-content: space-between;

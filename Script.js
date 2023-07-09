@@ -75,7 +75,7 @@ form.addEventListener("submit", (e) => {
 });
 
 updateButton.addEventListener("click", (e) => {
-  e.preventDefault();
+   e.preventDefault();
   updateForm();
 });
 

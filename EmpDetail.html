@@ -55,7 +55,7 @@
         formDataArray.splice(index, 1);
 
         localStorage.setItem("formData", JSON.stringify(formDataArray));
-
+ 
         const employeeTable = document.getElementById("employeeTable");
         employeeTable.deleteRow(index + 1);
       }
